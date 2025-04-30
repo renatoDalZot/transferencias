@@ -1,0 +1,7 @@
+--V1_Create_Conta_Table
+CREATE TABLE IF NOT EXISTS Conta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    agencia INT NOT NULL,
+    titular VARCHAR(255) NOT NULL,
+    saldo DECIMAL(10, 2) NOT NULL DEFAULT 0.00
+);

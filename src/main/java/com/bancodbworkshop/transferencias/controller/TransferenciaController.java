@@ -3,7 +3,6 @@ package com.bancodbworkshop.transferencias.controller;
 import com.bancodbworkshop.transferencias.dto.NovaTransferenciaRequest;
 import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
 import com.bancodbworkshop.transferencias.service.TransferenciaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

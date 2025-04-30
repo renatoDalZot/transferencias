@@ -9,6 +9,9 @@
 - Spring Data JPA
 - H2 Database (em memória)
 - Gradle
+- Junit
+- Mockito
+- Reflection
 
 ---
 
@@ -58,7 +61,7 @@ Response:
   "contaOrigem": "123456",
   "contaDestino": "654321",
   "valor": 100.00,
-  "status": "SUCESSO"
+  "dataTransferencia": "2023-10-01T12:00:00"
 }
 ```
 
@@ -76,7 +79,7 @@ Response:
   "contaOrigem": "123456",
   "contaDestino": "654321",
   "valor": 100.00,
-  "status": "SUCESSO"
+  "dataTransferencia": "2023-10-01T12:00:00"
 }
 ```
 
@@ -84,10 +87,10 @@ Response:
 
 Ao subir a aplicação, duas contas fictícias são cadastradas automaticamente (via `data.sql` ou script Java opcional):
 
-| Conta | Titular | Saldo Inicial |
-|-------|---------|---------------|
-| 1     | Alice   | 1000.00       |
-| 2     | Bob     | 500.00        |
+| Número | Conta | Titular        | Saldo Inicial |
+|--------|-------|----------------|---------------|
+| 1      | 1234  | João Silva     | 1000.00       |
+| 2      | 5678  | Maria Oliveira | 2000.00       |
 
 ## Objetivo do Workshop
 

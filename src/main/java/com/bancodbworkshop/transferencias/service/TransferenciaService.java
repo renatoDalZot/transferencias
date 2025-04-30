@@ -13,16 +13,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class TransferenciaService {
 
     private final ContaRepository contaRepository;
     private final TransferenciaRepository transferenciaRepository;
-
-    public TransferenciaService(ContaRepository contaRepository, TransferenciaRepository transferenciaRepository) {
-        this.contaRepository = contaRepository;
-        this.transferenciaRepository = transferenciaRepository;
-    }
-
 
     public TransferenciaResponse transferir(NovaTransferenciaRequest request) {
         if (request.valor() == null || request.valor().signum() <= 0) {
@@ -35,21 +30,16 @@ public class TransferenciaService {
         Conta destino = contaRepository.findById(request.contaDestino())
                 .orElseThrow(() -> new IllegalArgumentException("Conta de destino não encontrada"));
 
-        if (origem.getSaldo().compareTo(request.valor()) < 0) {
-            throw new SaldoInsuficienteException("Saldo insuficiente na conta de origem");
-        }
-
         origem.debitar(request.valor());
         destino.creditar(request.valor());
 
         contaRepository.save(origem);
         contaRepository.save(destino);
 
-        Transferencia transferencia = new Transferencia();
-        transferencia.setContaOrigem(origem.getNumero());
-        transferencia.setContaDestino(destino.getNumero());
-        transferencia.setValor(request.valor());
-        transferencia.setData(LocalDateTime.now());
+        Transferencia transferencia = new Transferencia(origem.getNumero(),
+                destino.getNumero(),
+                request.valor(),
+                LocalDateTime.now());
 
         transferenciaRepository.save(transferencia);
 
