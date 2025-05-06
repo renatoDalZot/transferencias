@@ -1,30 +1,30 @@
 package com.bancodbworkshop.transferencias.unit;
 
-import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
 import com.bancodbworkshop.transferencias.model.Transferencia;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TransferenciaTest {
 
     @Test
-    void deveConverterParaTransferenciaResponseCorretamente() {
-        Long contaOrigem = 1L;
-        Long contaDestino = 2L;
-        BigDecimal valor = BigDecimal.valueOf(500.00);
-        LocalDateTime data = LocalDateTime.of(2025, 4, 28, 10, 30, 0);
+    void deveCriarTransferenciaComSucesso() {
+        // Cenário
+        Long contaOrigemEsperada = 1L;
+        Long contaDestinoEsperada = 2L;
+        BigDecimal valorEsperado = BigDecimal.valueOf(500.00);
+        LocalDateTime dataEsperada = LocalDateTime.now();
 
-        Transferencia transferencia = new Transferencia(contaOrigem, contaDestino, valor, data);
-        TransferenciaResponse response = transferencia.toResponse();
+        // Ação
+        Transferencia transferenciaAtual = new Transferencia(contaOrigemEsperada, contaDestinoEsperada, valorEsperado, dataEsperada);
 
-        assertEquals(transferencia.getId(), response.id());
-        assertEquals(transferencia.getContaOrigem(), response.contaOrigem());
-        assertEquals(transferencia.getContaDestino(), response.contaDestino());
-        assertEquals(transferencia.getValor(), response.valor());
-        assertEquals(transferencia.getData(), response.data());
+        // Verificação
+        assertEquals(contaOrigemEsperada, transferenciaAtual.getContaOrigem());
+        assertEquals(contaDestinoEsperada, transferenciaAtual.getContaDestino());
+        assertEquals(valorEsperado, transferenciaAtual.getValor());
+        assertEquals(dataEsperada, transferenciaAtual.getData());
     }
 }

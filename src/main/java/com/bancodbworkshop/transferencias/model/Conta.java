@@ -2,24 +2,27 @@ package com.bancodbworkshop.transferencias.model;
 
 import com.bancodbworkshop.transferencias.exceptions.SaldoInsuficienteException;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "conta")
+@NoArgsConstructor
 public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter
-    private Long numero;
+    @Getter(AccessLevel.PUBLIC)
+    private Long id;
     @Column(name = "agencia")
     private Integer agencia;
     @Column(name = "titular")
     private String titular;
-    @Getter
+    @Getter(AccessLevel.PUBLIC)
     @Column(name = "saldo")
     private BigDecimal saldo;
 

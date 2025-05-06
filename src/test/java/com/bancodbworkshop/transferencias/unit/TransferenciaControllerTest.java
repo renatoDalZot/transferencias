@@ -1,11 +1,10 @@
 package com.bancodbworkshop.transferencias.unit;
 
 import com.bancodbworkshop.transferencias.controller.TransferenciaController;
-import com.bancodbworkshop.transferencias.dto.NovaTransferenciaRequest;
+import com.bancodbworkshop.transferencias.dto.TransferenciaRequest;
 import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
 import com.bancodbworkshop.transferencias.service.TransferenciaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,41 +35,55 @@ class TransferenciaControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private TransferenciaResponse transferenciaResponse;
-
-    @BeforeEach
-    void setUp() {
-        transferenciaResponse = new TransferenciaResponse(
-            1L, 1L, 2L, BigDecimal.valueOf(500.00), LocalDateTime.now()
-        );
-    }
-
     @Test
     void deveRealizarTransferenciaComSucesso() throws Exception {
-        NovaTransferenciaRequest request = new NovaTransferenciaRequest(1L, 2L, BigDecimal.valueOf(500.00));
+        // Cenário
+        Long contaOrigem = 1L;
+        Long contaDestino = 2L;
+        BigDecimal valorTransferencia = BigDecimal.valueOf(500.00);
+        TransferenciaRequest request = criarTransferenciaRequest(contaOrigem, contaDestino, valorTransferencia);
+        TransferenciaResponse transferenciaResponse = criarTransferenciaResponse(contaOrigem, contaDestino, valorTransferencia);
 
-        Mockito.when(transferenciaService.transferir(any(NovaTransferenciaRequest.class)))
+        // Configuração do mock
+        Mockito.when(transferenciaService.transferir(any(TransferenciaRequest.class)))
                .thenReturn(transferenciaResponse);
 
+        // Execução e verificação
         mockMvc.perform(post("/v1/transferencias")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(1L))
-               .andExpect(jsonPath("$.contaDestino").value(2L))
-               .andExpect(jsonPath("$.valor").value(500.00));
+               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.valor").value(valorTransferencia));
     }
 
     @Test
     void deveBuscarTransferenciaPorIdComSucesso() throws Exception {
+        // Cenário
+        Long contaOrigem = 1L;
+        Long contaDestino = 2L;
+        BigDecimal valorTransferencia = BigDecimal.valueOf(500.00);
+        TransferenciaResponse transferenciaResponse = criarTransferenciaResponse(contaOrigem, contaDestino, valorTransferencia);
+
+        // Configuração do mock
         Mockito.when(transferenciaService.buscarPorId(eq(1L))).thenReturn(transferenciaResponse);
 
+        // Execução e verificação
         mockMvc.perform(get("/v1/transferencias/1"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(1L))
-               .andExpect(jsonPath("$.contaDestino").value(2L))
-               .andExpect(jsonPath("$.valor").value(500.00));
+               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.valor").value(valorTransferencia));
+    }
+
+    private TransferenciaRequest criarTransferenciaRequest(Long contaOrigem, Long contaDestino, BigDecimal valor) {
+        return new TransferenciaRequest(contaOrigem, contaDestino, valor);
+    }
+
+    private TransferenciaResponse criarTransferenciaResponse(Long contaOrigem, Long contaDestino, BigDecimal valor) {
+        return new TransferenciaResponse(1L, contaOrigem, contaDestino, valor, LocalDateTime.now());
     }
 }

@@ -21,11 +21,11 @@ class ContaTest {
 
     @Test
     void quandoSaldoSuficienteDeveDebitar() {
-        BigDecimal valorDebito = BigDecimal.valueOf(500.00);
+        BigDecimal valorDebitoEsperado = BigDecimal.valueOf(500.00);
 
-        conta.debitar(valorDebito);
+        conta.debitar(valorDebitoEsperado);
 
-        assertEquals(BigDecimal.valueOf(500.00), conta.getSaldo());
+        assertEquals(valorDebitoEsperado, conta.getSaldo());
     }
 
     @Test
@@ -41,9 +41,10 @@ class ContaTest {
     @Test
     void quandoCreditarDeveIncrementarSaldo() {
         BigDecimal valorCredito = BigDecimal.valueOf(200.00);
+        BigDecimal valorEsperado = BigDecimal.valueOf(1200.00);
 
         conta.creditar(valorCredito);
 
-        assertEquals(BigDecimal.valueOf(1200.00), conta.getSaldo());
+        assertEquals(valorEsperado, conta.getSaldo());
     }
 }

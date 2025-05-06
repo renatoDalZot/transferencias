@@ -4,7 +4,7 @@
 ---
 
 ## Tecnologias Utilizadas
-- Java 17
+- Java 23
 - Spring Boot 3.x
 - Spring Data JPA
 - H2 Database (em memória)

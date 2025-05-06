@@ -1,6 +1,6 @@
 package com.bancodbworkshop.transferencias.controller;
 
-import com.bancodbworkshop.transferencias.dto.NovaTransferenciaRequest;
+import com.bancodbworkshop.transferencias.dto.TransferenciaRequest;
 import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
 import com.bancodbworkshop.transferencias.service.TransferenciaService;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class TransferenciaController {
     }
 
     @PostMapping
-    public ResponseEntity<TransferenciaResponse> transferir(@RequestBody NovaTransferenciaRequest request) {
+    public ResponseEntity<TransferenciaResponse> transferir(@RequestBody TransferenciaRequest request) {
         return ResponseEntity.ok(service.transferir(request));
     }
 
