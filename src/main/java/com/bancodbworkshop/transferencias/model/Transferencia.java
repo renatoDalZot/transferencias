@@ -1,6 +1,5 @@
 package com.bancodbworkshop.transferencias.model;
 
-import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,17 +18,17 @@ public class Transferencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "conta_origem")
-    private Long contaOrigem;
+    private Long contaOrigemId;
     @Column(name = "conta_destino")
-    private Long contaDestino;
+    private Long contaDestinoId;
     @Column(name = "valor")
     private BigDecimal valor;
     @Column(name = "data")
     private LocalDateTime data;
 
-    public Transferencia(Long contaOrigem, Long contaDestino, BigDecimal valor, LocalDateTime data) {
-        this.contaOrigem = contaOrigem;
-        this.contaDestino = contaDestino;
+    public Transferencia(Long contaOrigemId, Long contaDestinoId, BigDecimal valor, LocalDateTime data) {
+        this.contaOrigemId = contaOrigemId;
+        this.contaDestinoId = contaDestinoId;
         this.valor = valor;
         this.data = data;
     }

@@ -176,8 +176,8 @@ class TransferenciaServiceTest {
     private void verificarTransferenciaEncontrada(TransferenciaResponse respostaAtual, Transferencia transferenciaEsperada) {
         assertNotNull(respostaAtual);
         assertEquals(transferenciaEsperada.getId(), respostaAtual.id());
-        assertEquals(transferenciaEsperada.getContaOrigem(), respostaAtual.contaOrigem());
-        assertEquals(transferenciaEsperada.getContaDestino(), respostaAtual.contaDestino());
+        assertEquals(transferenciaEsperada.getContaOrigemId(), respostaAtual.contaOrigem());
+        assertEquals(transferenciaEsperada.getContaDestinoId(), respostaAtual.contaDestino());
         assertEquals(transferenciaEsperada.getValor(), respostaAtual.valor());
         verify(transferenciaRepository, times(1)).findById(transferenciaEsperada.getId());
     }

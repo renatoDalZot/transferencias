@@ -6,6 +6,7 @@ import com.bancodbworkshop.transferencias.model.Conta;
 import com.bancodbworkshop.transferencias.model.Transferencia;
 import com.bancodbworkshop.transferencias.repository.ContaRepository;
 import com.bancodbworkshop.transferencias.repository.TransferenciaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class TransferenciaService {
     private final ContaRepository contaRepository;
     private final TransferenciaRepository transferenciaRepository;
 
+    @Transactional
     public TransferenciaResponse transferir(TransferenciaRequest request) {
         if (request.valor() == null || request.valor().signum() <= 0) {
             throw new IllegalArgumentException("Valor da transferência deve ser positivo");
@@ -56,8 +58,8 @@ public class TransferenciaService {
     private TransferenciaResponse toResponse(Transferencia transferencia) {
         return new TransferenciaResponse(
                 transferencia.getId(),
-                transferencia.getContaOrigem(),
-                transferencia.getContaDestino(),
+                transferencia.getContaOrigemId(),
+                transferencia.getContaDestinoId(),
                 transferencia.getValor(),
                 transferencia.getData()
         );

@@ -22,8 +22,8 @@ class TransferenciaTest {
         Transferencia transferenciaAtual = new Transferencia(contaOrigemEsperada, contaDestinoEsperada, valorEsperado, dataEsperada);
 
         // Verificação
-        assertEquals(contaOrigemEsperada, transferenciaAtual.getContaOrigem());
-        assertEquals(contaDestinoEsperada, transferenciaAtual.getContaDestino());
+        assertEquals(contaOrigemEsperada, transferenciaAtual.getContaOrigemId());
+        assertEquals(contaDestinoEsperada, transferenciaAtual.getContaDestinoId());
         assertEquals(valorEsperado, transferenciaAtual.getValor());
         assertEquals(dataEsperada, transferenciaAtual.getData());
     }

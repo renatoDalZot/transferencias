@@ -10,19 +10,18 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "conta")
+@Getter
 @NoArgsConstructor
 public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Getter(AccessLevel.PUBLIC)
     private Long id;
     @Column(name = "agencia")
     private Integer agencia;
     @Column(name = "titular")
     private String titular;
-    @Getter(AccessLevel.PUBLIC)
     @Column(name = "saldo")
     private BigDecimal saldo;
 
