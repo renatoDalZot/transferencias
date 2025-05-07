@@ -21,6 +21,7 @@ public class Conta {
     @Column(name = "agencia")
     private Integer agencia;
     @Column(name = "titular")
+    @Transient
     private String titular;
     @Column(name = "saldo")
     private BigDecimal saldo;

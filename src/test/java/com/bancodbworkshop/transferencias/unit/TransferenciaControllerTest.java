@@ -54,8 +54,8 @@ class TransferenciaControllerTest {
                 .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
-               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.contaOrigemId").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestinoId").value(contaDestino))
                .andExpect(jsonPath("$.valor").value(valorTransferencia));
     }
 
@@ -74,8 +74,8 @@ class TransferenciaControllerTest {
         mockMvc.perform(get("/v1/transferencias/1"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
-               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.contaOrigemId").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestinoId").value(contaDestino))
                .andExpect(jsonPath("$.valor").value(valorTransferencia));
     }
 

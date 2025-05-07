@@ -55,8 +55,8 @@ class TransferenciaServiceTest {
 
         // Verificação
         assertNotNull(respostaAtual);
-        assertEquals(transferenciaEsperada.contaOrigem(), respostaAtual.contaOrigem());
-        assertEquals(transferenciaEsperada.contaDestino(), respostaAtual.contaDestino());
+        assertEquals(transferenciaEsperada.contaOrigemId(), respostaAtual.contaOrigemId());
+        assertEquals(transferenciaEsperada.contaDestinoId(), respostaAtual.contaDestinoId());
         assertEquals(BigDecimal.valueOf(500.00), respostaAtual.valor());
         assertEquals(1L, respostaAtual.id());
         assertEquals(BigDecimal.valueOf(500.00), contaOrigemEsperada.getSaldo());
@@ -176,8 +176,8 @@ class TransferenciaServiceTest {
     private void verificarTransferenciaEncontrada(TransferenciaResponse respostaAtual, Transferencia transferenciaEsperada) {
         assertNotNull(respostaAtual);
         assertEquals(transferenciaEsperada.getId(), respostaAtual.id());
-        assertEquals(transferenciaEsperada.getContaOrigemId(), respostaAtual.contaOrigem());
-        assertEquals(transferenciaEsperada.getContaDestinoId(), respostaAtual.contaDestino());
+        assertEquals(transferenciaEsperada.getContaOrigemId(), respostaAtual.contaOrigemId());
+        assertEquals(transferenciaEsperada.getContaDestinoId(), respostaAtual.contaDestinoId());
         assertEquals(transferenciaEsperada.getValor(), respostaAtual.valor());
         verify(transferenciaRepository, times(1)).findById(transferenciaEsperada.getId());
     }
