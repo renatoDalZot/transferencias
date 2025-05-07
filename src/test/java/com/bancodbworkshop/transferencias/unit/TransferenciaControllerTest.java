@@ -54,8 +54,8 @@ class TransferenciaControllerTest {
                 .content(objectMapper.writeValueAsString(request)))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
-               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.contaOrigemId").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestinoId").value(contaDestino))
                .andExpect(jsonPath("$.valor").value(valorTransferencia));
     }
 
@@ -74,9 +74,21 @@ class TransferenciaControllerTest {
         mockMvc.perform(get("/v1/transferencias/1"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1L))
-               .andExpect(jsonPath("$.contaOrigem").value(contaOrigem))
-               .andExpect(jsonPath("$.contaDestino").value(contaDestino))
+               .andExpect(jsonPath("$.contaOrigemId").value(contaOrigem))
+               .andExpect(jsonPath("$.contaDestinoId").value(contaDestino))
                .andExpect(jsonPath("$.valor").value(valorTransferencia));
+    }
+
+    @Test
+    void quandoMalFormatadaRequisicaoDeveRetornarBadRequest() throws Exception {
+        // Cenário
+        TransferenciaRequest request = new TransferenciaRequest(null, null, null);
+
+        // Execução e verificação
+        mockMvc.perform(post("/v1/transferencias")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+               .andExpect(status().isBadRequest());
     }
 
     private TransferenciaRequest criarTransferenciaRequest(Long contaOrigem, Long contaDestino, BigDecimal valor) {

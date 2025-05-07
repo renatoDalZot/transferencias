@@ -1,6 +1,5 @@
 package com.bancodbworkshop.transferencias.unit;
 
-import com.bancodbworkshop.transferencias.exceptions.SaldoInsuficienteException;
 import com.bancodbworkshop.transferencias.model.Conta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class ContaTest {
     void quandoSaldoInsuficienteDeveLancarExcecao() {
         BigDecimal valorDebito = BigDecimal.valueOf(1500.00);
 
-        Exception exception = assertThrows(SaldoInsuficienteException.class, () ->
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 conta.debitar(valorDebito)
         );
         assertEquals("Saldo insuficiente para realizar a transferência", exception.getMessage());

@@ -25,10 +25,10 @@ public class TransferenciaService {
             throw new IllegalArgumentException("Valor da transferência deve ser positivo");
         }
 
-        Conta origem = contaRepository.findById(request.contaOrigem())
+        Conta origem = contaRepository.findById(request.contaOrigemId())
                 .orElseThrow(() -> new IllegalArgumentException("Conta de origem não encontrada"));
 
-        Conta destino = contaRepository.findById(request.contaDestino())
+        Conta destino = contaRepository.findById(request.contaDestinoId())
                 .orElseThrow(() -> new IllegalArgumentException("Conta de destino não encontrada"));
 
         origem.debitar(request.valor());
