@@ -1,4 +1,4 @@
-package com.bancodbworkshop.transferencias.dto;
+package com.bancodbworkshop.transferencias.application.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

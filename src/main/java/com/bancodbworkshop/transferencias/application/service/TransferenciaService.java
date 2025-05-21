@@ -1,11 +1,11 @@
-package com.bancodbworkshop.transferencias.service;
+package com.bancodbworkshop.transferencias.application.service;
 
-import com.bancodbworkshop.transferencias.dto.TransferenciaRequest;
-import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
-import com.bancodbworkshop.transferencias.model.Conta;
-import com.bancodbworkshop.transferencias.model.Transferencia;
-import com.bancodbworkshop.transferencias.repository.ContaRepository;
-import com.bancodbworkshop.transferencias.repository.TransferenciaRepository;
+import com.bancodbworkshop.transferencias.application.dto.TransferenciaRequest;
+import com.bancodbworkshop.transferencias.application.dto.TransferenciaResponse;
+import com.bancodbworkshop.transferencias.domain.model.Conta;
+import com.bancodbworkshop.transferencias.domain.model.Transferencia;
+import com.bancodbworkshop.transferencias.domain.repository.ContaRepository;
+import com.bancodbworkshop.transferencias.domain.repository.TransferenciaRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

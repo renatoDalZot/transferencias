@@ -1,8 +1,8 @@
-package com.bancodbworkshop.transferencias.controller;
+package com.bancodbworkshop.transferencias.application.controller;
 
-import com.bancodbworkshop.transferencias.dto.TransferenciaRequest;
-import com.bancodbworkshop.transferencias.dto.TransferenciaResponse;
-import com.bancodbworkshop.transferencias.service.TransferenciaService;
+import com.bancodbworkshop.transferencias.application.dto.TransferenciaRequest;
+import com.bancodbworkshop.transferencias.application.dto.TransferenciaResponse;
+import com.bancodbworkshop.transferencias.application.service.TransferenciaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

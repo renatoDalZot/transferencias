@@ -1,4 +1,4 @@
-package com.bancodbworkshop.transferencias.dto;
+package com.bancodbworkshop.transferencias.application.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

@@ -1,4 +1,4 @@
-package com.bancodbworkshop.transferencias.exceptions;
+package com.bancodbworkshop.transferencias.application.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

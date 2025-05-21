@@ -1,4 +1,4 @@
-package com.bancodbworkshop.transferencias.model;
+package com.bancodbworkshop.transferencias.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

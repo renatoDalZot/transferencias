@@ -1,4 +1,4 @@
-package com.bancodbworkshop.transferencias.model;
+package com.bancodbworkshop.transferencias.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -31,13 +31,27 @@ public class Conta {
     }
 
     public void debitar(BigDecimal valor) {
-        if (valor.compareTo(this.saldo) > 0) {
+        if (eMaiorQueOSaldo(valor)) {
             throw new IllegalArgumentException("Saldo insuficiente para realizar a transferência");
+        }
+        if (eMenorOuIgualAZero(valor)) {
+            throw new IllegalArgumentException("Valor de transferência deve ser positivo");
         }
         this.saldo = this.saldo.subtract(valor);
     }
 
     public void creditar(BigDecimal valor) {
+        if (eMenorOuIgualAZero(valor)) {
+            throw new IllegalArgumentException("Valor de transferência deve ser positivo");
+        }
         this.saldo = this.saldo.add(valor);
+    }
+
+    private boolean eMenorOuIgualAZero(BigDecimal valor) {
+        return valor.compareTo(BigDecimal.ZERO) <= 0;
+    }
+
+    private boolean eMaiorQueOSaldo(BigDecimal valor) {
+        return valor.compareTo(this.saldo) > 0;
     }
 }
